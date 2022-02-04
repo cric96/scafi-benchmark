@@ -11,5 +11,8 @@ object BenchmarkPlatform extends App {
   )
   val program = new RepCheck // find a way to pass program as arguments
   // Count the execution time, check if some framework exists
-  (0 to ticks) foreach simulator.exec(program)
+  val startingTime =
+    System.currentTimeMillis() // Todo, this is not the correct way to benchmark time, verify if exists some lib
+  (0 to ticks) foreach { _ => simulator.exec(program) }
+  println(s"Execution time: ${System.currentTimeMillis() - startingTime}")
 }
